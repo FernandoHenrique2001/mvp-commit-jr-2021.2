@@ -14,8 +14,6 @@ class GenreService{
     async getMovieByGenreList(){
         const repositoryResponse = await getMoviesByGenreList();
 
-
-
         if(repositoryResponse.status){
             // Converti a api que recebo para String
             const repositoryResponseString = JSON.stringify(repositoryResponse);
@@ -24,7 +22,6 @@ class GenreService{
            // const esse = repositoryResponseObj.data.results.map(this.selectionFilms, 16);
             repositoryResponseObj.data = repositoryResponseObj.data.results.filter(this.selectionFilms, 16);
            // console.log(repositoryResponseObj.data.results[0]);
-            console.log(repositoryResponseObj);
             return repositoryResponseObj;
         }
     }
@@ -33,17 +30,13 @@ class GenreService{
         const repositoryResponse = await getMoviesList();
 
         if(repositoryResponse.status){
-            console.log(repositoryResponse.data);
-           return repositoryResponse;
+            return repositoryResponse;
         }
     }
 
-    selectionFilms(film: any, id_genre: number){
+    selectionFilms(film: any){
 
-        return film.genre_ids.includes(16);
-    /*if(film.genre_ids.includes()){
-        return film;
-    }*/
+        return film.genre_ids.includes(this);
     }
 }
 

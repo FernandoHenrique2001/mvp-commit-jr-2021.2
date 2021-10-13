@@ -5,9 +5,15 @@ import GenreService from "../domain/GenreService";
 
 class GenreController {
 
+    public genreService: GenreService;
+
+    constructor(){
+        this.genreService = new GenreService;
+    }
+
     async getGenreList(request: Request, response: Response){
         try{
-            const genreData = new GenreService();
+            const genreData = this.genreService;
             const genreList = await genreData.getGenreList();
             
             if(genreList != null){
@@ -23,7 +29,7 @@ class GenreController {
 
     async getMovieByGenreList(request: Request, response: Response){
         try{
-            const movieData = new GenreService();
+            const movieData = this.genreService;
             const movieList = await movieData.getMovieByGenreList();
 
             if(movieList != null){
@@ -38,7 +44,7 @@ class GenreController {
 
     async getMovieList(request: Request, response: Response){
         try{
-            const movieData = new GenreService();
+            const movieData = this.genreService;
             const movieList = await movieData.getMovieList();
 
             if(movieList != null){
